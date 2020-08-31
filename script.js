@@ -22,10 +22,9 @@ const generate = (name, id) => {
     arr[3] = 0xE0;
     // write key/amiibo num in big endian as a 64 bit value starting from offset off
     var off = 0x1DC;
-    var num = id.substring(2).padStart(16, '0'); // remove 0x then pad to 16 hex digits, aka 64 bits
     for(var i = 0; i < 16; i += 2, off += 1)
     {
-  	    arr[off] = parseInt(num.substring(i, i + 2), 16);
+  	    arr[off] = parseInt(id.substring(i, i + 2), 16);
     }
 
     var out_s = "";
