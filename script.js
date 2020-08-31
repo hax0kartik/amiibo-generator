@@ -7,7 +7,7 @@ const populateTable = () => {
         Object.keys(data.amiibos).forEach(function(key) {
   	        var ami = data.amiibos[key];
             var name = ami.name;
-            var keytext = key.substring(2).padStart(16, '0');
+            var keytext = key.padStart(16, '0');
             var link = "https://github.com/Falco20019/libamiibo/raw/master/libamiibo.images/Images/icon_" + keytext + ".png"
             var image = `<img src="${link}" height=46 width=46></img>`;
             t.row.add([image, name, keytext]);
@@ -22,6 +22,7 @@ const generate = (name, id) => {
     arr[3] = 0xE0;
     // write key/amiibo num in big endian as a 64 bit value starting from offset off
     var off = 0x1DC;
+    id = id.substring(2);
     for(var i = 0; i < 16; i += 2, off += 1)
     {
   	    arr[off] = parseInt(id.substring(i, i + 2), 16);
