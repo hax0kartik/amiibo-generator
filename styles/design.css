@@ -1,0 +1,60 @@
+body {
+    background-color: #36393F;
+    color: #FBF7F5;
+}
+
+.inputBox {
+    background-color: #1F2021;
+    color: #FBF7F5;
+    border-color: #1F2021;
+}
+
+.inputBox:focus {
+    background-color: #141719;
+}
+
+.dataTables_filter {
+    display: none; 
+}
+
+.custom-select,
+.custom-select:hover {
+    background: unset;
+}
+
+.custom-select:active,
+.custom-select:focus {
+    border-color: #33383b;
+    box-shadow: 0 0 0 0.2rem rgba(33,37,40,.5)
+}
+
+.page-item.disabled .page-link,
+.page-link,
+.custom-select,
+.form-control:focus {
+    color: #fff;
+    background-color: #444;
+    border-color: #444;
+}
+
+.page-item.disabled .page-link:hover,
+.page-link:hover,
+.custom-select:hover {
+    color: #fff;
+    background-color: #313131;
+    border-color: #2b2a2a;
+}
+
+.page-item.active .page-link,
+.btn.btn-primary.btn-block {
+    color: #fff;
+    background-color: #375a7f;
+    border-color: #375a7f;  
+}
+
+.page-item.active .page-link:hover,
+.btn.btn-primary.btn-block:hover {
+    color: #fff;
+    background-color: #2b4764;
+    border-color: #28415b;
+}
