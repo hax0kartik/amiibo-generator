@@ -8,7 +8,8 @@ const populateTable = () => {
   	        var ami = data.amiibos[key];
             var name = ami.name;
             var keytext = key.padStart(16, '0');
-            var link = "https://github.com/Falco20019/libamiibo/raw/master/libamiibo.images/Images/icon_" + keytext + ".png"
+            var keylink = key.substring(2).padStart(16, '0');
+            var link = "https://github.com/Falco20019/libamiibo/raw/master/libamiibo.images/Images/icon_" + keylink + ".png"
             var image = `<img src="${link}" height=46 width=46></img>`;
             t.row.add([image, name, keytext]);
         });
