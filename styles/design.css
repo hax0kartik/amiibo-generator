@@ -58,3 +58,7 @@ body {
     background-color: #2b4764;
     border-color: #28415b;
 }
+
+.hide_until_loaded, .hide_until_zipped {
+    display: none;
+}
