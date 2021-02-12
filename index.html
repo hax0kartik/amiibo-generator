@@ -55,7 +55,7 @@
                 <h4>Bulk Download:</h4>
             </div>
             <div class="col-sm-10 hide_until_zipped">
-                <p>If you want to download a zip file of all the bin files, <a href="javascript:download(amiiboZip, 'amiibo.zip', 'application/octet-stream');">click here</a>.</p>
+                <p>If you want to download a zip file of all the bin files, <a id="downloadZip" href="#">click here</a>.</p>
             </div>
         </div>
         
@@ -85,19 +85,7 @@
                     </tbody>            
                 </table>
             </div>
-        </div>
-        <script defer type="text/javascript">populateTable(); 
-            oTable = $('#dataTable').DataTable({
-                "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
-            }); 
-              
-            $('#dataTable tbody').on('click', 'tr', function () {
-                var data = oTable.row( this ).data();
-                downloadBin(data[1], data[2]);
-            } );
-            $('#input').keyup(function(){
-              oTable.search(jQuery.fn.DataTable.ext.type.search.string($(this).val())).draw();  
-        })</script>    
+        </div>   
 </body>
 </html>
 </html>

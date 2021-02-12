@@ -62,3 +62,47 @@ body {
 .hide_until_loaded, .hide_until_zipped {
     display: none;
 }
+
+
+.amiibo-image {
+    width: 48px;
+    height: 48px;
+    display: inline-block;
+    text-align: center;
+}
+
+.amiibo-image:after {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    width: 0;
+    vertical-align: middle;
+}
+
+
+.amiibo-image img {
+    max-height: 48px;
+    max-width: 48px;
+    vertical-align: middle;
+}
+
+span.table-text {
+    display: inline-block;
+    height: 48px;
+    vertical-align: middle;
+}
+
+span.table-text:after {
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    height: 48px;
+}
+
+td {
+    cursor: pointer;
+}
+
+body {
+    padding: 15px 0;
+}
