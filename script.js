@@ -24,15 +24,28 @@
         });
     };
 
+    function getRandomBytes(count) {
+        var output = new Uint8Array(count);
+    
+        for (var i = 0; i < output.length; i++) {
+            output[i] = Math.round(Math.random() * 255);
+        }
+    
+        return output;
+    }
+
     function generateData(id) {
         var arr = new Uint8Array(540);
-        arr[2] = 0x0F;
-        arr[3] = 0xE0;
+        arr.set([0x00, 0x00, 0x00, 0x88, 0x00, 0x00, 0x00, 0x00, 0x00, 0x48, 0x0f, 0xe0, 0xf1, 0x10, 0xff, 0xee, 0xa5, 0x00, 0x00, 0x00], 0);
+        arr.set([0x01, 0x00, 0x0F, 0xBD, 0x00, 0x00, 0x00, 0x04, 0x5F, 0x00, 0x00, 0x00], 520);
+
+        // Set the salt
+        arr.set(getRandomBytes(32), 96);
+
         // write key/amiibo num in big endian as a 64 bit value starting from offset off
-        var off = 0x1DC;
         id = id.substring(2);
 
-        for(var i = 0; i < 16; i += 2, off += 1) {
+        for(var i = 0, off = 84; i < 16; i += 2, off += 1) {
             arr[off] = parseInt(id.substring(i, i + 2), 16);
         }
 
