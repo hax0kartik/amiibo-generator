@@ -23,17 +23,42 @@
             generateZip();
         });
     };
+    
+    var dlok = [0x01, 0x00, 0x0F, 0xBD];
+    var cfg0 = [0, 0, 0, 0x04];
+    var cfg1 = [0x5F, 0, 0, 0];
 
     function generateData(id) {
         var arr = new Uint8Array(540);
+        arr[1] = 0x48;
         arr[2] = 0x0F;
         arr[3] = 0xE0;
+        
+        var off = 0x28;
+        arr[off] = 0xA5;
+        
+        off = 0x1D4;
+        arr[off] = 0x04;
         // write key/amiibo num in big endian as a 64 bit value starting from offset off
-        var off = 0x1DC;
+        off = 0x1DC;
         id = id.substring(2);
 
         for(var i = 0; i < 16; i += 2, off += 1) {
             arr[off] = parseInt(id.substring(i, i + 2), 16);
+        }
+        
+        off = 0x208;
+        for(let i of dlok) {
+            arr[off] = i;
+            off++;
+        }
+        for(let i of cfg0) {
+            arr[off] = i;
+            off++;
+        }
+        for(let i of cfg1) {
+            arr[off] = i;
+            off++;
         }
 
         return arr;
