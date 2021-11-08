@@ -24,10 +24,39 @@
         });
     };
 
+    function getRandomBytes(count) {
+        var output = new Uint8Array(count);
+    
+        for (var i = 0; i < output.length; i++) {
+            output[i] = Math.round(Math.random() * 255);
+        }
+    
+        return output;
+    }
+
     function generateData(id) {
         var arr = new Uint8Array(540);
-        arr[2] = 0x0F;
-        arr[3] = 0xE0;
+        // Set UID
+        arr.set([0x04, 0x01, 0x02, 0x8F, 0x03, 0x04, 0x05, 0x06], 0x1D4);
+        
+        // Set BCC, Internal, Static Lock, and CC
+        arr.set([0x04, 0x48, 0x0F, 0xE0, 0xF1, 0x10, 0xFF, 0xEE], 0x0);
+        
+        // Set 0xA5, Write Counter, and Unknown
+        arr.set([0xA5, 0x00, 0x00, 0x00], 0x28);
+        
+        // Set Dynamic Lock, and RFUI
+        arr.set([0x01, 0x00, 0x0F, 0xBD], 0x208);
+        
+        // Set CFG0
+        arr.set([0x00, 0x00, 0x00, 0x04], 0x208);
+        
+        // Set CFG1
+        arr.set([0x5F, 0x00, 0x00, 0x00], 0x208);
+        
+        // Set Keygen Salt
+        arr.set(getRandomBytes(32), 0x1E8);
+        
         // write key/amiibo num in big endian as a 64 bit value starting from offset off
         var off = 0x1DC;
         id = id.substring(2);
